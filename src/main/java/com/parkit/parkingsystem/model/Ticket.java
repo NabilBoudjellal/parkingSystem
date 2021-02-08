@@ -50,8 +50,7 @@ public class Ticket {
 
     public void setInTime(Date inTime) {
         if(inTime != null) {
-        Date tempInTime = new Date(inTime.getTime());
-        this.inTime = tempInTime;
+            this.inTime = new Date(inTime.getTime());
         } else this.inTime = null;
     }
 
@@ -63,8 +62,7 @@ public class Ticket {
 
     public void setOutTime(Date outTime) {
         if(outTime != null) {
-            Date tempOutTime = new Date(outTime.getTime());
-            this.outTime = tempOutTime;
+            this.outTime = new Date(outTime.getTime());
         } else this.outTime = null;
     }
 }

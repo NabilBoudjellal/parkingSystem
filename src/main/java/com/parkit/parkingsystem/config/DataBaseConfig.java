@@ -23,9 +23,10 @@ public class DataBaseConfig {
         String url = prop_con.getProperty("jdbc.url");
         String login =prop_con.getProperty("jdbc.login");
         String password =prop_con.getProperty("jdbc.password");
+        String driver =prop_con.getProperty("jdbc.driver.class");
 
         logger.info("Create DB connection");
-        Class.forName("com.mysql.cj.jdbc.Driver");
+        Class.forName(driver);
         return DriverManager.getConnection(
                 url,login,password);
     }
