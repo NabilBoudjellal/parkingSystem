@@ -87,5 +87,4 @@ public class ParkingDataBaseIT {
                 () -> assertEquals(Fare.CAR_RATE_PER_HOUR, dataBasePrepareService.getFareToCheckIt()),
                 () -> assertEquals(timestamp.getTime(),dataBasePrepareService.getOutDateToCheckIt().getTime(),10000));
     }
-
 }

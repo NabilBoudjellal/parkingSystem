@@ -3,17 +3,31 @@ package com.parkit.parkingsystem.config;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 
 public class DataBaseConfig {
 
     private static final Logger logger = LogManager.getLogger("DataBaseConfig");
 
     public Connection getConnection() throws ClassNotFoundException, SQLException {
+        Properties prop_con = new Properties();
+        try ( FileInputStream fis = new FileInputStream("conf.properties")){
+            prop_con.load( fis);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        String url = prop_con.getProperty("jdbc.url");
+        String login =prop_con.getProperty("jdbc.login");
+        String password =prop_con.getProperty("jdbc.password");
+
         logger.info("Create DB connection");
         Class.forName("com.mysql.cj.jdbc.Driver");
         return DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/prod?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false","root","Nappi-2020");
+                url,login,password);
     }
 
     public void closeConnection(Connection con){
