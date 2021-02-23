@@ -1,6 +1,5 @@
-com.parkit.parkingsystem.integration
 com.parkit.parkingsystem.integration.config
-com.parkit.parkingsystem.integration.service
-com.parkit.parkingsystem.unitTests.dao
+com.parkit.parkingsystem.integration.daoIT
+com.parkit.parkingsystem.integration.serviceIT
 com.parkit.parkingsystem.unitTests.modelTests
 com.parkit.parkingsystem.unitTests.service

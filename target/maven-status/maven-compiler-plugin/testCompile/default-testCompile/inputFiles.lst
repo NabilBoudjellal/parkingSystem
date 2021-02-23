@@ -1,9 +1,9 @@
 C:\Users\Boubo\OneDrive\Bureau\developpement\openclassrooms\sealesforce\P05_boudjellal_nabil\code\parkingSystem\src\test\java\com\parkit\parkingsystem\unitTests\modelTests\ParkingSpotTest.java
-C:\Users\Boubo\OneDrive\Bureau\developpement\openclassrooms\sealesforce\P05_boudjellal_nabil\code\parkingSystem\src\test\java\com\parkit\parkingsystem\unitTests\dao\ParkingSpotDAOTest.java
-C:\Users\Boubo\OneDrive\Bureau\developpement\openclassrooms\sealesforce\P05_boudjellal_nabil\code\parkingSystem\src\test\java\com\parkit\parkingsystem\unitTests\dao\TicketDAOTest.java
-C:\Users\Boubo\OneDrive\Bureau\developpement\openclassrooms\sealesforce\P05_boudjellal_nabil\code\parkingSystem\src\test\java\com\parkit\parkingsystem\integration\ParkingServiceIT.java
+C:\Users\Boubo\OneDrive\Bureau\developpement\openclassrooms\sealesforce\P05_boudjellal_nabil\code\parkingSystem\src\test\java\com\parkit\parkingsystem\integration\daoIT\TicketDaoIT.java
+C:\Users\Boubo\OneDrive\Bureau\developpement\openclassrooms\sealesforce\P05_boudjellal_nabil\code\parkingSystem\src\test\java\com\parkit\parkingsystem\integration\config\DataBasePrepareService.java
+C:\Users\Boubo\OneDrive\Bureau\developpement\openclassrooms\sealesforce\P05_boudjellal_nabil\code\parkingSystem\src\test\java\com\parkit\parkingsystem\integration\daoIT\ParkingSpotDaoIT.java
+C:\Users\Boubo\OneDrive\Bureau\developpement\openclassrooms\sealesforce\P05_boudjellal_nabil\code\parkingSystem\src\test\java\com\parkit\parkingsystem\unitTests\service\ParkingServiceTest.java
+C:\Users\Boubo\OneDrive\Bureau\developpement\openclassrooms\sealesforce\P05_boudjellal_nabil\code\parkingSystem\src\test\java\com\parkit\parkingsystem\integration\serviceIT\ParkingDataBaseIT.java
 C:\Users\Boubo\OneDrive\Bureau\developpement\openclassrooms\sealesforce\P05_boudjellal_nabil\code\parkingSystem\src\test\java\com\parkit\parkingsystem\integration\config\DataBaseTestConfig.java
-C:\Users\Boubo\OneDrive\Bureau\developpement\openclassrooms\sealesforce\P05_boudjellal_nabil\code\parkingSystem\src\test\java\com\parkit\parkingsystem\integration\ParkingDataBaseIT.java
 C:\Users\Boubo\OneDrive\Bureau\developpement\openclassrooms\sealesforce\P05_boudjellal_nabil\code\parkingSystem\src\test\java\com\parkit\parkingsystem\unitTests\modelTests\TicketTest.java
-C:\Users\Boubo\OneDrive\Bureau\developpement\openclassrooms\sealesforce\P05_boudjellal_nabil\code\parkingSystem\src\test\java\com\parkit\parkingsystem\integration\service\DataBasePrepareService.java
 C:\Users\Boubo\OneDrive\Bureau\developpement\openclassrooms\sealesforce\P05_boudjellal_nabil\code\parkingSystem\src\test\java\com\parkit\parkingsystem\unitTests\service\FareCalculatorServiceTest.java

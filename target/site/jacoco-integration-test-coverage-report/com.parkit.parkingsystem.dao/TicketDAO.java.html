@@ -63,15 +63,15 @@ import java.sql.Timestamp;
             //ID, PARKING_NUMBER, VEHICLE_REG_NUMBER, PRICE, IN_TIME, OUT_TIME)
 <span class="fc" id="L64">            ps.setString(1,vehicleRegNumber);</span>
 <span class="fc" id="L65">            ResultSet rs = ps.executeQuery();</span>
-<span class="pc bpc" id="L66" title="1 of 2 branches missed.">            if(rs.next()){</span>
-<span class="nc" id="L67">                ticket = new Ticket();</span>
-<span class="nc" id="L68">                ParkingSpot parkingSpot = new ParkingSpot(rs.getInt(1), ParkingType.valueOf(rs.getString(6)),false);</span>
-<span class="nc" id="L69">                ticket.setParkingSpot(parkingSpot);</span>
-<span class="nc" id="L70">                ticket.setId(rs.getInt(2));</span>
-<span class="nc" id="L71">                ticket.setVehicleRegNumber(vehicleRegNumber);</span>
-<span class="nc" id="L72">                ticket.setPrice(rs.getDouble(3));</span>
-<span class="nc" id="L73">                ticket.setInTime(rs.getTimestamp(4));</span>
-<span class="nc" id="L74">                ticket.setOutTime(rs.getTimestamp(5));</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">            if(rs.next()){</span>
+<span class="fc" id="L67">                ticket = new Ticket();</span>
+<span class="fc" id="L68">                ParkingSpot parkingSpot = new ParkingSpot(rs.getInt(1), ParkingType.valueOf(rs.getString(6)),false);</span>
+<span class="fc" id="L69">                ticket.setParkingSpot(parkingSpot);</span>
+<span class="fc" id="L70">                ticket.setId(rs.getInt(2));</span>
+<span class="fc" id="L71">                ticket.setVehicleRegNumber(vehicleRegNumber);</span>
+<span class="fc" id="L72">                ticket.setPrice(rs.getDouble(3));</span>
+<span class="fc" id="L73">                ticket.setInTime(rs.getTimestamp(4));</span>
+<span class="fc" id="L74">                ticket.setOutTime(rs.getTimestamp(5));</span>
             }
 <span class="fc" id="L76">            dataBaseConfig.closeResultSet(rs);</span>
 <span class="fc" id="L77">            dataBaseConfig.closePreparedStatement(ps);</span>
@@ -91,7 +91,7 @@ import java.sql.Timestamp;
 <span class="fc" id="L91">        Connection con = null;</span>
         try {
 <span class="fc" id="L93">            con = dataBaseConfig.getConnection();</span>
-<span class="pc bpc" id="L94" title="1 of 2 branches missed.">            if(checkIfIdExist(ticket.getId())) {</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">            if(checkIfIdExist(ticket.getId())) {</span>
 <span class="fc" id="L95">                PreparedStatement ps = con.prepareStatement(DBConstants.UPDATE_TICKET);</span>
 <span class="fc" id="L96">                ps.setDouble(1, ticket.getPrice());</span>
 <span class="fc" id="L97">                ps.setTimestamp(2, new Timestamp(ticket.getOutTime().getTime()));</span>
@@ -99,7 +99,7 @@ import java.sql.Timestamp;
 <span class="fc" id="L99">                ps.execute();</span>
 <span class="fc" id="L100">                dataBaseConfig.closePreparedStatement(ps);</span>
 <span class="fc" id="L101">                return true;</span>
-<span class="nc" id="L102">            }else return false;</span>
+<span class="fc" id="L102">            }else return false;</span>
 <span class="nc" id="L103">        }catch (Exception ex){</span>
 <span class="nc" id="L104">            logger.error(&quot;Error saving ticket info&quot;,ex);</span>
         }finally {
@@ -121,7 +121,7 @@ import java.sql.Timestamp;
 <span class="fc" id="L121">            ps.setString(1,vehicleRegNumber);</span>
 <span class="fc" id="L122">            ResultSet rs = ps.executeQuery();</span>
 <span class="pc bpc" id="L123" title="1 of 2 branches missed.">            if(rs.next()){</span>
-<span class="pc bpc" id="L124" title="1 of 2 branches missed.">                return rs.getInt(1) &gt; 0;</span>
+<span class="fc bfc" id="L124" title="All 2 branches covered.">                return rs.getInt(1) &gt; 0;</span>
             }
 <span class="nc" id="L126">            dataBaseConfig.closeResultSet(rs);</span>
 <span class="nc" id="L127">            dataBaseConfig.closePreparedStatement(ps);</span>
@@ -145,20 +145,20 @@ import java.sql.Timestamp;
 <span class="fc" id="L145">            ps.setInt(1,id);</span>
 <span class="fc" id="L146">            ResultSet rs = ps.executeQuery();</span>
 <span class="pc bpc" id="L147" title="1 of 2 branches missed.">            if(rs.next()){</span>
-<span class="pc bpc" id="L148" title="1 of 2 branches missed.">                if (rs.getInt(1) &gt; 0) {</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">                if (rs.getInt(1) &gt; 0) {</span>
 <span class="fc" id="L149">                    logger.info(&quot;The ID is in the DB&quot;);</span>
 <span class="fc" id="L150">                    return true;</span>
-<span class="nc" id="L151">                }else logger.info(&quot;The ID is not in the DB&quot;);</span>
+<span class="fc" id="L151">                }else logger.info(&quot;The ID is not in the DB&quot;);</span>
             }
-<span class="nc" id="L153">            dataBaseConfig.closeResultSet(rs);</span>
-<span class="nc" id="L154">            dataBaseConfig.closePreparedStatement(ps);</span>
+<span class="fc" id="L153">            dataBaseConfig.closeResultSet(rs);</span>
+<span class="fc" id="L154">            dataBaseConfig.closePreparedStatement(ps);</span>
 <span class="nc" id="L155">        }catch (Exception ex){</span>
 <span class="nc" id="L156">            logger.error(&quot;Error during recurring customer checking &quot;,ex);</span>
         }finally {
 <span class="fc" id="L158">            dataBaseConfig.closeConnection(con);</span>
 
         }
-<span class="nc" id="L161">        return false;</span>
+<span class="fc" id="L161">        return false;</span>
     }
     /***
      * this methode check in the DB if a reg number is exist in the DB with outTime = null

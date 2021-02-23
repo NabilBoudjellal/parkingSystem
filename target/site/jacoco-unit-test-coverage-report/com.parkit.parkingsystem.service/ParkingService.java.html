@@ -17,64 +17,64 @@ import java.util.Date;
  */
 public class ParkingService {
 
-<span class="nc" id="L20">    private static final Logger logger = LogManager.getLogger(&quot;ParkingService&quot;);</span>
+<span class="fc" id="L20">    private static final Logger logger = LogManager.getLogger(&quot;ParkingService&quot;);</span>
 
-<span class="nc" id="L22">    private static final FareCalculatorService fareCalculatorService = new FareCalculatorService();</span>
+<span class="fc" id="L22">    private static final FareCalculatorService fareCalculatorService = new FareCalculatorService();</span>
 
     private final InputReaderUtil inputReaderUtil;
     private final ParkingSpotDAO parkingSpotDAO;
     private final TicketDAO ticketDAO;
 
-<span class="nc" id="L28">    public ParkingService(InputReaderUtil inputReaderUtil, ParkingSpotDAO parkingSpotDAO, TicketDAO ticketDAO){</span>
-<span class="nc" id="L29">        this.inputReaderUtil = inputReaderUtil;</span>
-<span class="nc" id="L30">        this.parkingSpotDAO = parkingSpotDAO;</span>
-<span class="nc" id="L31">        this.ticketDAO = ticketDAO;</span>
-<span class="nc" id="L32">    }</span>
+<span class="fc" id="L28">    public ParkingService(InputReaderUtil inputReaderUtil, ParkingSpotDAO parkingSpotDAO, TicketDAO ticketDAO){</span>
+<span class="fc" id="L29">        this.inputReaderUtil = inputReaderUtil;</span>
+<span class="fc" id="L30">        this.parkingSpotDAO = parkingSpotDAO;</span>
+<span class="fc" id="L31">        this.ticketDAO = ticketDAO;</span>
+<span class="fc" id="L32">    }</span>
 
     /***
      * this methode is dedicated to the process of entering a vehicle in the parking
      */
     public void processIncomingVehicle() {
         try{
-<span class="nc" id="L39">            ParkingSpot parkingSpot = getNextParkingNumberIfAvailable();</span>
-<span class="nc bnc" id="L40" title="All 4 branches missed.">            if(parkingSpot !=null &amp;&amp; parkingSpot.getId() &gt; 0){</span>
-<span class="nc" id="L41">                String vehicleRegNumber = getVehicleRegNumber();</span>
-<span class="nc bnc" id="L42" title="All 2 branches missed.">                if(ticketDAO.checkIfRegNumberIsInTheParking(vehicleRegNumber))</span>
-<span class="nc" id="L43">                    System.out.println(&quot;A vehicle with the same RegNumber is already parked, you can't enter with this RegNumber&quot;);</span>
+<span class="fc" id="L39">            ParkingSpot parkingSpot = getNextParkingNumberIfAvailable();</span>
+<span class="pc bpc" id="L40" title="2 of 4 branches missed.">            if(parkingSpot !=null &amp;&amp; parkingSpot.getId() &gt; 0){</span>
+<span class="fc" id="L41">                String vehicleRegNumber = getVehicleRegNumber();</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">                if(ticketDAO.checkIfRegNumberIsInTheParking(vehicleRegNumber))</span>
+<span class="fc" id="L43">                    System.out.println(&quot;A vehicle with the same RegNumber is already parked, you can't enter with this RegNumber&quot;);</span>
                 else {
-<span class="nc" id="L45">                    parkingSpot.setAvailable(false);</span>
-<span class="nc" id="L46">                    parkingSpotDAO.updateParking(parkingSpot);//allot this parking space and mark it's availability as false</span>
+<span class="fc" id="L45">                    parkingSpot.setAvailable(false);</span>
+<span class="fc" id="L46">                    parkingSpotDAO.updateParking(parkingSpot);//allot this parking space and mark it's availability as false</span>
 
-<span class="nc" id="L48">                    Date inTime = new Date();</span>
-<span class="nc" id="L49">                    Ticket ticket = new Ticket();</span>
+<span class="fc" id="L48">                    Date inTime = new Date();</span>
+<span class="fc" id="L49">                    Ticket ticket = new Ticket();</span>
                     //ID, PARKING_NUMBER, VEHICLE_REG_NUMBER, PRICE, IN_TIME, OUT_TIME)
                     //ticket.setId(ticketID);
-<span class="nc" id="L52">                    ticket.setParkingSpot(parkingSpot);</span>
-<span class="nc" id="L53">                    ticket.setVehicleRegNumber(vehicleRegNumber);</span>
-<span class="nc" id="L54">                    ticket.setPrice(0);</span>
-<span class="nc" id="L55">                    ticket.setInTime(inTime);</span>
-<span class="nc" id="L56">                    ticket.setOutTime(null);</span>
-<span class="nc" id="L57">                    ticketDAO.saveTicket(ticket);</span>
-<span class="nc" id="L58">                    System.out.println(&quot;Generated Ticket and saved in DB&quot;);</span>
+<span class="fc" id="L52">                    ticket.setParkingSpot(parkingSpot);</span>
+<span class="fc" id="L53">                    ticket.setVehicleRegNumber(vehicleRegNumber);</span>
+<span class="fc" id="L54">                    ticket.setPrice(0);</span>
+<span class="fc" id="L55">                    ticket.setInTime(inTime);</span>
+<span class="fc" id="L56">                    ticket.setOutTime(null);</span>
+<span class="fc" id="L57">                    ticketDAO.saveTicket(ticket);</span>
+<span class="fc" id="L58">                    System.out.println(&quot;Generated Ticket and saved in DB&quot;);</span>
                     //test si client récurent
-<span class="nc bnc" id="L60" title="All 2 branches missed.">                    if (ticketDAO.checkIfRegularCustomer(vehicleRegNumber))</span>
-<span class="nc" id="L61">                        System.out.println(&quot;Welcome back! As a recurring user of our parking lot, you'll benefit from a &quot; + Fare.PERCENTAGE_DISCOUNT_FOR_RECURRING_CUSTOMER * 100 + &quot;% discount&quot;);</span>
-<span class="nc" id="L62">                    System.out.println(&quot;Please park your vehicle in spot number:&quot; + parkingSpot.getId());</span>
-<span class="nc" id="L63">                    System.out.println(&quot;Recorded in-time for vehicle number:&quot; + vehicleRegNumber + &quot; is:&quot; + inTime);</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">                    if (ticketDAO.checkIfRegularCustomer(vehicleRegNumber))</span>
+<span class="fc" id="L61">                        System.out.println(&quot;Welcome back! As a recurring user of our parking lot, you'll benefit from a &quot; + Fare.PERCENTAGE_DISCOUNT_FOR_RECURRING_CUSTOMER * 100 + &quot;% discount&quot;);</span>
+<span class="fc" id="L62">                    System.out.println(&quot;Please park your vehicle in spot number:&quot; + parkingSpot.getId());</span>
+<span class="fc" id="L63">                    System.out.println(&quot;Recorded in-time for vehicle number:&quot; + vehicleRegNumber + &quot; is:&quot; + inTime);</span>
                 }
             }
 <span class="nc" id="L66">        }catch(Exception e){</span>
 <span class="nc" id="L67">            logger.error(&quot;Unable to process incoming vehicle&quot;,e);</span>
-<span class="nc" id="L68">        }</span>
-<span class="nc" id="L69">    }</span>
+<span class="fc" id="L68">        }</span>
+<span class="fc" id="L69">    }</span>
 
     /***
      * this methode call the input reader to have the registration number
      * @return a String of the registration number
      */
     private String getVehicleRegNumber() {
-<span class="nc" id="L76">        System.out.println(&quot;Please type the vehicle registration number and press enter key&quot;);</span>
-<span class="nc" id="L77">        return inputReaderUtil.readVehicleRegistrationNumber();</span>
+<span class="fc" id="L76">        System.out.println(&quot;Please type the vehicle registration number and press enter key&quot;);</span>
+<span class="fc" id="L77">        return inputReaderUtil.readVehicleRegistrationNumber();</span>
     }
 
     /***
@@ -84,12 +84,12 @@ public class ParkingService {
      */
     public ParkingSpot getNextParkingNumberIfAvailable(){
         int parkingNumber;
-<span class="nc" id="L87">        ParkingSpot parkingSpot = null;</span>
+<span class="fc" id="L87">        ParkingSpot parkingSpot = null;</span>
         try{
-<span class="nc" id="L89">            ParkingType parkingType = getVehicleType();</span>
-<span class="nc" id="L90">            parkingNumber = parkingSpotDAO.getNextAvailableSlot(parkingType);</span>
-<span class="nc bnc" id="L91" title="All 2 branches missed.">            if(parkingNumber &gt; 0){</span>
-<span class="nc" id="L92">                parkingSpot = new ParkingSpot(parkingNumber,parkingType, true);</span>
+<span class="fc" id="L89">            ParkingType parkingType = getVehicleType();</span>
+<span class="fc" id="L90">            parkingNumber = parkingSpotDAO.getNextAvailableSlot(parkingType);</span>
+<span class="pc bpc" id="L91" title="1 of 2 branches missed.">            if(parkingNumber &gt; 0){</span>
+<span class="fc" id="L92">                parkingSpot = new ParkingSpot(parkingNumber,parkingType, true);</span>
             }else{
 <span class="nc" id="L94">                throw new Exception(&quot;Error fetching parking number from DB. Parking slots might be full&quot;);</span>
             }
@@ -97,8 +97,8 @@ public class ParkingService {
 <span class="nc" id="L97">            logger.error(&quot;Error parsing user input for type of vehicle&quot;, ie);</span>
 <span class="nc" id="L98">        }catch(Exception e){</span>
 <span class="nc" id="L99">            logger.error(&quot;Error fetching next available parking slot&quot;, e);</span>
-<span class="nc" id="L100">        }</span>
-<span class="nc" id="L101">        return parkingSpot;</span>
+<span class="pc" id="L100">        }</span>
+<span class="fc" id="L101">        return parkingSpot;</span>
     }
 
     /***
@@ -106,13 +106,13 @@ public class ParkingService {
      * @return the car type of the user
      */
     private ParkingType getVehicleType(){
-<span class="nc" id="L109">        System.out.println(&quot;Please select vehicle type from menu&quot;);</span>
-<span class="nc" id="L110">        System.out.println(&quot;1 CAR&quot;);</span>
-<span class="nc" id="L111">        System.out.println(&quot;2 BIKE&quot;);</span>
-<span class="nc" id="L112">        int input = inputReaderUtil.readSelection();</span>
-<span class="nc bnc" id="L113" title="All 3 branches missed.">        switch(input){</span>
+<span class="fc" id="L109">        System.out.println(&quot;Please select vehicle type from menu&quot;);</span>
+<span class="fc" id="L110">        System.out.println(&quot;1 CAR&quot;);</span>
+<span class="fc" id="L111">        System.out.println(&quot;2 BIKE&quot;);</span>
+<span class="fc" id="L112">        int input = inputReaderUtil.readSelection();</span>
+<span class="pc bpc" id="L113" title="2 of 3 branches missed.">        switch(input){</span>
             case 1: {
-<span class="nc" id="L115">                return ParkingType.CAR;</span>
+<span class="fc" id="L115">                return ParkingType.CAR;</span>
             }
             case 2: {
 <span class="nc" id="L118">                return ParkingType.BIKE;</span>
@@ -129,28 +129,28 @@ public class ParkingService {
      */
     public void processExitingVehicle() {
         try{
-<span class="nc" id="L132">            String vehicleRegNumber = getVehicleRegNumber();</span>
-<span class="nc bnc" id="L133" title="All 2 branches missed.">            if(ticketDAO.checkIfRegNumberIsInTheParking(vehicleRegNumber))</span>
+<span class="fc" id="L132">            String vehicleRegNumber = getVehicleRegNumber();</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">            if(ticketDAO.checkIfRegNumberIsInTheParking(vehicleRegNumber))</span>
             {
-<span class="nc" id="L135">                Ticket ticket = ticketDAO.getTicket(vehicleRegNumber);</span>
-<span class="nc" id="L136">                Date outTime = new Date();</span>
-<span class="nc" id="L137">                ticket.setOutTime(outTime);</span>
-<span class="nc" id="L138">                fareCalculatorService.calculateFare(ticket);</span>
-<span class="nc bnc" id="L139" title="All 2 branches missed.">                if (ticketDAO.updateTicket(ticket)) {</span>
-<span class="nc" id="L140">                    ParkingSpot parkingSpot = ticket.getParkingSpot();</span>
-<span class="nc" id="L141">                    parkingSpot.setAvailable(true);</span>
-<span class="nc" id="L142">                    parkingSpotDAO.updateParking(parkingSpot);</span>
-<span class="nc" id="L143">                    System.out.println(&quot;Please pay the parking fare:&quot; + ticket.getPrice());</span>
-<span class="nc" id="L144">                    System.out.println(&quot;Recorded out-time for vehicle number:&quot; + ticket.getVehicleRegNumber() + &quot; is:&quot; + outTime);</span>
-<span class="nc" id="L145">                } else {</span>
-<span class="nc" id="L146">                    System.out.println(&quot;Unable to update ticket information. Error occurred&quot;);</span>
+<span class="fc" id="L135">                Ticket ticket = ticketDAO.getTicket(vehicleRegNumber);</span>
+<span class="fc" id="L136">                Date outTime = new Date();</span>
+<span class="fc" id="L137">                ticket.setOutTime(outTime);</span>
+<span class="fc" id="L138">                fareCalculatorService.calculateFare(ticket);</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">                if (ticketDAO.updateTicket(ticket)) {</span>
+<span class="fc" id="L140">                    ParkingSpot parkingSpot = ticket.getParkingSpot();</span>
+<span class="fc" id="L141">                    parkingSpot.setAvailable(true);</span>
+<span class="fc" id="L142">                    parkingSpotDAO.updateParking(parkingSpot);</span>
+<span class="fc" id="L143">                    System.out.println(&quot;Please pay the parking fare:&quot; + ticket.getPrice());</span>
+<span class="fc" id="L144">                    System.out.println(&quot;Recorded out-time for vehicle number:&quot; + ticket.getVehicleRegNumber() + &quot; is:&quot; + outTime);</span>
+<span class="fc" id="L145">                } else {</span>
+<span class="fc" id="L146">                    System.out.println(&quot;Unable to update ticket information. Error occurred&quot;);</span>
                 }
-<span class="nc" id="L148">            }else{</span>
-<span class="nc" id="L149">                System.out.println(&quot;There is no vehicle with this registration number is in the parking lot&quot;);</span>
+<span class="fc" id="L148">            }else{</span>
+<span class="fc" id="L149">                System.out.println(&quot;There is no vehicle with this registration number is in the parking lot&quot;);</span>
             }
 <span class="nc" id="L151">        }catch(Exception e){</span>
 <span class="nc" id="L152">            logger.error(&quot;Unable to process exiting vehicle&quot;,e);</span>
-<span class="nc" id="L153">        }</span>
-<span class="nc" id="L154">    }</span>
+<span class="fc" id="L153">        }</span>
+<span class="fc" id="L154">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
